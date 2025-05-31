@@ -1,0 +1,41 @@
+package com.manuelneto.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.manuelneto.entitys.Usuario;
+import com.manuelneto.service.UsuarioService;
+
+@RestController
+@RequestMapping("/api/usuarios")
+@CrossOrigin(origins = "*")
+public class UsuarioController {
+	
+	@Autowired
+	private UsuarioService usuarioService;
+	
+	@GetMapping
+	public List<Usuario> listarTodos() {
+		return usuarioService.listarTodos();
+	}
+	
+	@PostMapping
+	public Usuario criar(@RequestBody Usuario usuario) {
+		return usuarioService.salvar(usuario);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Usuario> buscarPorId(PathVariable Long id) {
+		Usuario usuario
+	}
+	
+}
