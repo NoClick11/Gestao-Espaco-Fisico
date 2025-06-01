@@ -1,4 +1,4 @@
-package com.manuelneto.entitys;
+package com.manuelneto.gestaoespacofisico.entity;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -34,6 +34,9 @@ public class EspacoFisico {
 			inverseJoinColumns = @JoinColumn(name = "id_equipamento")
 			)
 	private List<Equipamento> equipamentos;
+	
+	public EspacoFisico() {
+	}
 
 	public EspacoFisico(Long id, String nome, String tipo, BigDecimal metragem, List<Equipamento> equipamentos) {
 		Id = id;

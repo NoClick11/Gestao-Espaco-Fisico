@@ -1,4 +1,4 @@
-package com.manuelneto.entitys;
+package com.manuelneto.gestaoespacofisico.entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

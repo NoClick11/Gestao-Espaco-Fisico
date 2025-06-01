@@ -1,4 +1,4 @@
-package com.manuelneto.controller;
+package com.manuelneto.gestaoespacofisico.controller;
 
 import java.util.List;
 
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.manuelneto.entitys.Solicitacao;
-import com.manuelneto.service.SolicitacaoService;
+import com.manuelneto.gestaoespacofisico.entity.Solicitacao;
+import com.manuelneto.gestaoespacofisico.service.SolicitacaoService;
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/api/solicitacoes")
 @CrossOrigin(origins = "*")
 public class SolicitacaoController {
 	

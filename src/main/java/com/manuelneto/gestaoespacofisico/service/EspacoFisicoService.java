@@ -1,4 +1,4 @@
-package com.manuelneto.service;
+package com.manuelneto.gestaoespacofisico.service;
 
 
 
@@ -7,8 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.manuelneto.entitys.EspacoFisico;
-import com.manuelneto.repository.EspacoFisicoRepository;
+import com.manuelneto.gestaoespacofisico.entity.EspacoFisico;
+import com.manuelneto.gestaoespacofisico.repository.EspacoFisicoRepository;
 
 @Service
 public class EspacoFisicoService {

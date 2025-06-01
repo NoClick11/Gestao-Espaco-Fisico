@@ -1,4 +1,4 @@
-package com.manuelneto.entitys;
+package com.manuelneto.gestaoespacofisico.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,6 +17,9 @@ public class Equipamento {
 	
 	private  String nome;
 
+	public Equipamento() {
+	}
+	
 	public Equipamento(Long id, String nome) {
 		super();
 		this.id = id;

@@ -1,4 +1,4 @@
-package com.manuelneto.controller;
+package com.manuelneto.gestaoespacofisico.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,12 +1,12 @@
-package com.manuelneto.service;
+package com.manuelneto.gestaoespacofisico.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.manuelneto.entitys.Solicitacao;
-import com.manuelneto.repository.SolicitacaoRepository;
+import com.manuelneto.gestaoespacofisico.entity.Solicitacao;
+import com.manuelneto.gestaoespacofisico.repository.SolicitacaoRepository;
 
 @Service
 public class SolicitacaoService {
@@ -31,7 +31,7 @@ public class SolicitacaoService {
 	}
 	
 	public Long contarPendentes() {
-		return solicitacaoRepository.CountPendentes();
+		return solicitacaoRepository.countPendentes();
 	}
 	
 	public void deletar(Long id) {

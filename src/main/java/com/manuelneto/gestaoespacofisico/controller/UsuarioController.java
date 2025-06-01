@@ -1,4 +1,4 @@
-package com.manuelneto.controller;
+package com.manuelneto.gestaoespacofisico.controller;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.manuelneto.entitys.Usuario;
-import com.manuelneto.service.UsuarioService;
+import com.manuelneto.gestaoespacofisico.entity.Usuario;
+import com.manuelneto.gestaoespacofisico.service.UsuarioService;
 
 
 @RestController
@@ -42,7 +42,7 @@ public class UsuarioController {
         return usuario != null ? ResponseEntity.ok(usuario) : ResponseEntity.notFound().build();
     }
     
-    @PutMapping("path/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Usuario> atualizar(@PathVariable Long id, @RequestBody Usuario usuario) {
     	Usuario usuarioexistente = usuarioService.buscarPorId(id);
     	if (usuarioexistente != null) {

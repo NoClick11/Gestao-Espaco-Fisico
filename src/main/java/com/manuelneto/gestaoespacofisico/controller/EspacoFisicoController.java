@@ -1,4 +1,4 @@
-package com.manuelneto.controller;
+package com.manuelneto.gestaoespacofisico.controller;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.manuelneto.entitys.EspacoFisico;
-import com.manuelneto.service.EspacoFisicoService;
+import com.manuelneto.gestaoespacofisico.entity.EspacoFisico;
+import com.manuelneto.gestaoespacofisico.service.EspacoFisicoService;
 import org.springframework.web.bind.annotation.PutMapping;
 
 
@@ -37,8 +37,8 @@ public class EspacoFisicoController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<EspacoFisico> buscarPorId(@PathVariable Long Id) {
-		EspacoFisico espaco = espacoService.buscarPorId(Id);
+	public ResponseEntity<EspacoFisico> buscarPorId(@PathVariable Long id) {
+		EspacoFisico espaco = espacoService.buscarPorId(id);
 		return espaco != null ? ResponseEntity.ok(espaco) : ResponseEntity.notFound().build();
 	}
 	
