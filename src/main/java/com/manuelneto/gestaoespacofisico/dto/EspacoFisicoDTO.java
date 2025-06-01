@@ -11,9 +11,6 @@ public class EspacoFisicoDTO {
     private String nome;
 
     @NotBlank(message = "O nome é obrigatório")
-    private String localizacao;
-
-    @NotBlank(message = "O nome é obrigatório")
     private BigDecimal metragem;
 
     public Long getId() {
@@ -30,14 +27,6 @@ public class EspacoFisicoDTO {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getLocalizacao() {
-        return localizacao;
-    }
-
-    public void setLocalizacao(String localizacao) {
-        this.localizacao = localizacao;
     }
 
     public BigDecimal getMetragem() {

@@ -1,57 +1,60 @@
 package com.manuelneto.gestaoespacofisico.controller;
 
-import java.util.List;
-
+import com.manuelneto.gestaoespacofisico.dto.EspacoFisicoDTO;
+import com.manuelneto.gestaoespacofisico.entity.EspacoFisico;
+import com.manuelneto.gestaoespacofisico.mapper.EspacoFisicoMapper;
+import com.manuelneto.gestaoespacofisico.service.EspacoFisicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.manuelneto.gestaoespacofisico.entity.EspacoFisico;
-import com.manuelneto.gestaoespacofisico.service.EspacoFisicoService;
-import org.springframework.web.bind.annotation.PutMapping;
-
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/espacos")
 @CrossOrigin(origins = "*")
 public class EspacoFisicoController {
-	
+
 	@Autowired
 	private EspacoFisicoService espacoService;
-	
+
+	@Autowired
+	private EspacoFisicoMapper espacoFisicoMapper;
+
 	@GetMapping
-	public List<EspacoFisico> listarTodos() {
-		return espacoService.listarTodos();
+	public List<EspacoFisicoDTO> listarTodos() {
+		return espacoService.listarTodos()
+				.stream()
+				.map(espacoFisicoMapper::toDTO)
+				.collect(Collectors.toList());
 	}
-	
+
 	@PostMapping
-	public EspacoFisico criar(@RequestBody EspacoFisico espaco) {
-		return espacoService.salvar(espaco);
+	public EspacoFisicoDTO criar(@RequestBody EspacoFisicoDTO dto) {
+		EspacoFisico espaco = espacoFisicoMapper.toEntity(dto);
+		espaco = espacoService.salvar(espaco);
+		return espacoFisicoMapper.toDTO(espaco);
 	}
-	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<EspacoFisico> buscarPorId(@PathVariable Long id) {
+	public ResponseEntity<EspacoFisicoDTO> buscarPorId(@PathVariable Long id) {
 		EspacoFisico espaco = espacoService.buscarPorId(id);
-		return espaco != null ? ResponseEntity.ok(espaco) : ResponseEntity.notFound().build();
+		return espaco != null ? ResponseEntity.ok(espacoFisicoMapper.toDTO(espaco)) : ResponseEntity.notFound().build();
 	}
-	
+
 	@PutMapping("/{id}")
-	public ResponseEntity<EspacoFisico> atualizar(@PathVariable Long id, @RequestBody EspacoFisico espaco) {
-		EspacoFisico espacoExistente = espacoService.buscarPorId(id);
-		if (espacoExistente != null) {
+	public ResponseEntity<EspacoFisicoDTO> atualizar(@PathVariable Long id, @RequestBody EspacoFisicoDTO dto) {
+		EspacoFisico existente = espacoService.buscarPorId(id);
+		if (existente != null) {
+			EspacoFisico espaco = espacoFisicoMapper.toEntity(dto);
 			espaco.setId(id);
-			return ResponseEntity.ok(espacoService.salvar(espaco));
+			EspacoFisico atualizado = espacoService.salvar(espaco);
+			return ResponseEntity.ok(espacoFisicoMapper.toDTO(atualizado));
 		}
 		return ResponseEntity.notFound().build();
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deletar(@PathVariable Long id) {
 		espacoService.deletar(id);

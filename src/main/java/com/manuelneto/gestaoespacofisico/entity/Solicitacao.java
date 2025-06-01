@@ -1,48 +1,59 @@
 package com.manuelneto.gestaoespacofisico.entity;
 
+import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import java.util.Set;
 
 @Entity
 @Table(name = "solicitacoes")
-public class Solicitacao {	
+public class Solicitacao {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_solicitacao")
 	private Long id;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_espaco")
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_espaco", nullable = false)
 	private EspacoFisico espacoFisico;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_solicitante")
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_solicitante", nullable = false)
 	private Usuario solicitante;
-	
-	@Column(name = "data_reserva")
+
+	@Column(name = "data_reserva", nullable = false)
 	private LocalDate dataReserva;
-	
-	@Column(name = "hora_inicio")
+
+	@Column(name = "hora_inicio", nullable = false)
 	private LocalTime horaInicio;
-	
-	@Column(name = "hora_fim")
+
+	@Column(name = "hora_fim", nullable = false)
 	private LocalTime horaFim;
-	
+
+	@Column(nullable = false)
 	private String status;
-	private String equipamentos;
-	
+
+	@Column(columnDefinition = "TEXT")
+	private String descricao;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+			name = "solicitacao_equipamentos",
+			joinColumns = @JoinColumn(name = "id_solicitacao"),
+			inverseJoinColumns = @JoinColumn(name = "id_equipamento")
+	)
+	private Set<Equipamento> equipamentos;
+
+	@Column(name = "data_criacao", nullable = false, updatable = false)
+	private LocalDate dataCriacao = LocalDate.now();
+
+	// Construtores
 	public Solicitacao() {
+		this.status = "PENDENTE"; // Valor padrão
 	}
 
+	// Getters e Setters
 	public Long getId() {
 		return id;
 	}
@@ -99,15 +110,27 @@ public class Solicitacao {
 		this.status = status;
 	}
 
-	public String getEquipamentos() {
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Set<Equipamento> getEquipamentos() {
 		return equipamentos;
 	}
 
-	public void setEquipamentos(String equipamentos) {
+	public void setEquipamentos(Set<Equipamento> equipamentos) {
 		this.equipamentos = equipamentos;
 	}
-	
-	
-	
-	
+
+	public LocalDate getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public void setDataCriacao(LocalDate dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
 }

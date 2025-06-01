@@ -65,6 +65,7 @@ public class EspacoFisico {
 	public String getTipo() {
 		return tipo;
 	}
+
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
@@ -84,9 +85,5 @@ public class EspacoFisico {
 	public void setEquipamentos(List<Equipamento> equipamentos) {
 		this.equipamentos = equipamentos;
 	}
-	
-	
-	
-	
-	
+
 }

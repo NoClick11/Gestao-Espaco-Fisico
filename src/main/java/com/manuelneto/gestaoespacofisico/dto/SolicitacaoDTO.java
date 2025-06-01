@@ -1,15 +1,33 @@
 package com.manuelneto.gestaoespacofisico.dto;
 
-import java.time.LocalDateTime;
+import jakarta.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Set;
 
 public class SolicitacaoDTO {
     private Long id;
-    private String descricao;
-    private LocalDateTime dataSolicitacao;
-    private String status;
-    private Set<EquipamentoDTO> equipamentos;  // agora é um set de DTOs
 
+    @NotNull(message = "Espaço físico é obrigatório")
+    private Long espacoFisicoId;
+
+    @NotNull(message = "Solicitante é obrigatório")
+    private Long solicitanteId;
+
+    @NotNull(message = "Data da reserva é obrigatória")
+    private LocalDate dataReserva;
+
+    @NotNull(message = "Hora de início é obrigatória")
+    private LocalTime horaInicio;
+
+    @NotNull(message = "Hora de fim é obrigatória")
+    private LocalTime horaFim;
+
+    private String status;
+    private String equipamentos;
+    private Set<Long> equipamentosIds;
+
+    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -18,20 +36,44 @@ public class SolicitacaoDTO {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public Long getEspacoFisicoId() {
+        return espacoFisicoId;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setEspacoFisicoId(Long espacoFisicoId) {
+        this.espacoFisicoId = espacoFisicoId;
     }
 
-    public LocalDateTime getDataSolicitacao() {
-        return dataSolicitacao;
+    public Long getSolicitanteId() {
+        return solicitanteId;
     }
 
-    public void setDataSolicitacao(LocalDateTime dataSolicitacao) {
-        this.dataSolicitacao = dataSolicitacao;
+    public void setSolicitanteId(Long solicitanteId) {
+        this.solicitanteId = solicitanteId;
+    }
+
+    public LocalDate getDataReserva() {
+        return dataReserva;
+    }
+
+    public void setDataReserva(LocalDate dataReserva) {
+        this.dataReserva = dataReserva;
+    }
+
+    public LocalTime getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(LocalTime horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public LocalTime getHoraFim() {
+        return horaFim;
+    }
+
+    public void setHoraFim(LocalTime horaFim) {
+        this.horaFim = horaFim;
     }
 
     public String getStatus() {
@@ -42,11 +84,11 @@ public class SolicitacaoDTO {
         this.status = status;
     }
 
-    public Set<EquipamentoDTO> getEquipamentos() {
-        return equipamentos;
+    public Set<Long> getEquipamentosIds() {
+        return equipamentosIds;
     }
 
-    public void setEquipamentos(Set<EquipamentoDTO> equipamentos) {
-        this.equipamentos = equipamentos;
+    public void setEquipamentosIds(Set<Long> equipamentosIds) {
+        this.equipamentosIds = equipamentosIds;
     }
 }

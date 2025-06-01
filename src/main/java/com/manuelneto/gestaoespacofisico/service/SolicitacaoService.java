@@ -1,6 +1,7 @@
 package com.manuelneto.gestaoespacofisico.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +22,9 @@ public class SolicitacaoService {
 	public Solicitacao salvar (Solicitacao solicitacao) {
 		return solicitacaoRepository.save(solicitacao);
 	}
-	
-	public Solicitacao buscarPorID(Long Id) {
-		return solicitacaoRepository.findById(Id).orElse(null);
+
+	public Optional<Solicitacao> buscarPorID(Long id) {
+		return solicitacaoRepository.findById(id);
 	}
 	
 	public List<Solicitacao> buscarPorStatus(String status) {

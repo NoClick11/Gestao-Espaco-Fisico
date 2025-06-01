@@ -10,18 +10,16 @@ public class EquipamentoMapper {
     public EquipamentoDTO toDTO(Equipamento equipamento) {
         if (equipamento == null) return null;
         EquipamentoDTO dto = new EquipamentoDTO();
-        dto.setId(equipamento.getId(dto.getNome()));
+        dto.setId(equipamento.getId());  // CORREÇÃO: chamada correta sem parâmetro
         dto.setNome(equipamento.getNome());
-        return  dto;
+        return dto;
     }
 
     public Equipamento toEntity(EquipamentoDTO dto) {
         if (dto == null) return null;
         Equipamento equipamento = new Equipamento();
         equipamento.setId(dto.getId());
-        equipamento.getId(dto.getNome());
+        equipamento.setNome(dto.getNome());  // CORREÇÃO: estava chamando getId com parâmetro
         return equipamento;
     }
-
-
 }

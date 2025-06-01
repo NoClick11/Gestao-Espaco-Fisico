@@ -26,7 +26,7 @@ public class Equipamento {
 		this.nome = nome;
 	}
 
-	public Long getId(String nome) {
+	public Long getId() {
 		return id;
 	}
 

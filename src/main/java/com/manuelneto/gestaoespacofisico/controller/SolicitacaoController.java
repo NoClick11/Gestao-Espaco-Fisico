@@ -1,74 +1,79 @@
 package com.manuelneto.gestaoespacofisico.controller;
 
-import java.util.List;
-
+import com.manuelneto.gestaoespacofisico.dto.SolicitacaoDTO;
+import com.manuelneto.gestaoespacofisico.mapper.SolicitacaoMapper;
+import com.manuelneto.gestaoespacofisico.service.SolicitacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.manuelneto.gestaoespacofisico.entity.Solicitacao;
-import com.manuelneto.gestaoespacofisico.service.SolicitacaoService;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/solicitacoes")
 @CrossOrigin(origins = "*")
 public class SolicitacaoController {
-	
+
 	@Autowired
 	private SolicitacaoService solicitacaoService;
-	
+
+	@Autowired
+	private SolicitacaoMapper solicitacaoMapper;
+
 	@GetMapping
-	public List<Solicitacao> listarTodas() {
-		return solicitacaoService.listarTodas();
+	public List<SolicitacaoDTO> listarTodas() {
+		return solicitacaoService.listarTodas()
+				.stream()
+				.map(solicitacaoMapper::toDTO)
+				.collect(Collectors.toList());
 	}
-	
+
 	@PostMapping
-	public Solicitacao criar(@RequestBody Solicitacao solicitacao) {
-		if (solicitacao.getStatus() == null) {
-			solicitacao.setStatus("PENDENTE");
-		}
-		return solicitacaoService.salvar(solicitacao);
+	public SolicitacaoDTO criar(@RequestBody SolicitacaoDTO dto) {
+		return solicitacaoMapper.toDTO(
+				solicitacaoService.salvar(
+						solicitacaoMapper.toEntity(dto)
+				)
+		);
 	}
-	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<Solicitacao> buscarPorId(@PathVariable Long id) {
-		Solicitacao solicitacao = solicitacaoService.buscarPorID(id);
-		return solicitacao != null ? ResponseEntity.ok(solicitacao) : ResponseEntity.notFound().build();
+	public ResponseEntity<SolicitacaoDTO> buscarPorId(@PathVariable Long id) {
+		return solicitacaoService.buscarPorID(id)
+				.map(solicitacaoMapper::toDTO)
+				.map(ResponseEntity::ok)
+				.orElse(ResponseEntity.notFound().build());
 	}
-	
+
 	@PutMapping("/{id}")
-	public ResponseEntity<Solicitacao> atualizar(@PathVariable Long id, @RequestBody Solicitacao solicitacao) {
-		Solicitacao solicitacaoExistente = solicitacaoService.buscarPorID(id);
-		if (solicitacaoExistente != null) {
-			solicitacao.setId(id);
-			return ResponseEntity.ok(solicitacaoService.salvar(solicitacao));
-		}
-		return ResponseEntity.notFound().build();
+	public ResponseEntity<SolicitacaoDTO> atualizar(@PathVariable Long id, @RequestBody SolicitacaoDTO dto) {
+		dto.setId(id);
+		return ResponseEntity.ok(
+				solicitacaoMapper.toDTO(
+						solicitacaoService.salvar(
+								solicitacaoMapper.toEntity(dto)
+						)
+				)
+		);
 	}
-	
+
 	@PutMapping("/{id}/status")
-	public ResponseEntity<Solicitacao> atualizarStatus(@PathVariable Long id, @RequestBody String status) {
-		Solicitacao solicitacao = solicitacaoService.buscarPorID(id);
-		if (solicitacao != null) {
-			solicitacao.setStatus(status);
-			return ResponseEntity.ok(solicitacaoService.salvar(solicitacao));
-		}
-		return ResponseEntity.notFound().build();
+	public ResponseEntity<SolicitacaoDTO> atualizarStatus(@PathVariable Long id, @RequestBody String status) {
+		return ResponseEntity.of(
+				solicitacaoService.buscarPorID(id)
+						.map(solicitacao -> {
+							solicitacao.setStatus(status);
+							return solicitacaoMapper.toDTO(solicitacaoService.salvar(solicitacao));
+						})
+		);
 	}
-	
+
 	@GetMapping("/pendentes/count")
 	public Long contarPendentes() {
 		return solicitacaoService.contarPendentes();
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deletar(@PathVariable Long id) {
 		solicitacaoService.deletar(id);
