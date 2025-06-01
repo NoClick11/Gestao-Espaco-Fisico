@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestão de Equipamentos</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Gestão de Equipamentos</h1>
+</header>
+
+<nav>
+    <a href="index.html">Início</a>
+    <a href="equipamentos.html">Equipamentos</a>
+    <a href="espacos.html">Espaços</a>
+    <a href="usuarios.html">Usuários</a>
+    <a href="solicitacoes.html">Solicitações</a>
+</nav>
+
+<div class="container">
+    <h2>Lista de Equipamentos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="equipamento-table">
+        </tbody>
+    </table>
+
+    <h2>Adicionar Equipamento</h2>
+    <form id="equipamento-form">
+        <input type="text" id="nome" placeholder="Nome do Equipamento" required>
+        <button type="submit">Salvar</button>
+    </form>
+</div>
+
+<script src="js/equipamentos.js"></script>
+</body>
+</html>

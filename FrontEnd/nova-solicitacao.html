@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Nova Solicitação</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Nova Solicitação</h1>
+</header>
+
+<nav>
+    <a href="index.html">Início</a>
+    <a href="equipamentos.html">Equipamentos</a>
+    <a href="usuarios.html">Usuários</a>
+    <a href="solicitacoes.html">Solicitações</a>
+</nav>
+
+<div class="container">
+    <form id="solicitacao-form">
+        <label>Espaço:</label>
+        <select id="espaco"></select>
+
+        <label>Solicitante:</label>
+        <select id="solicitante"></select>
+
+        <label>Data Reserva:</label>
+        <input type="date" id="dataReserva" required>
+
+        <label>Hora Início:</label>
+        <input type="time" id="horaInicio" required>
+
+        <label>Hora Fim:</label>
+        <input type="time" id="horaFim" required>
+
+        <label>Descrição:</label>
+        <input type="text" id="descricao">
+
+        <button type="submit">Criar Solicitação</button>
+    </form>
+</div>
+
+<script src="js/nova-solicitacao.js"></script>
+</body>
+</html>

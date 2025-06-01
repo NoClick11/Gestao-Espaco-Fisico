@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestão de Usuários</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Gestão de Usuários</h1>
+</header>
+
+<nav>
+    <a href="index.html">Início</a>
+    <a href="equipamentos.html">Equipamentos</a>
+    <a href="usuarios.html">Usuários</a>
+    <a href="solicitacoes.html">Solicitações</a>
+</nav>
+
+<div class="container">
+    <h2>Lista de Usuários</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Tipo</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="usuario-table">
+        </tbody>
+    </table>
+
+    <h2>Adicionar Usuário</h2>
+    <form id="usuario-form">
+        <input type="text" id="nome" placeholder="Nome" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="tipoUsuario" placeholder="Tipo de Usuário" required>
+        <button type="submit">Salvar</button>
+    </form>
+</div>
+
+<script src="js/usuarios.js"></script>
+</body>
+</html>
