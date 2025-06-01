@@ -17,8 +17,12 @@ public class UsuarioService {
 	public List<Usuario> listarTodos() {
 		return usuarioRepository.findAll();
 	}
-	
+
 	public Usuario salvar(Usuario usuario) {
+		Usuario existente = usuarioRepository.findByEmail(usuario.getEmail());
+		if (existente != null && !existente.getId().equals(usuario.getId())) {
+			throw new RuntimeException("Email já cadastrado.");
+		}
 		return usuarioRepository.save(usuario);
 	}
 	
