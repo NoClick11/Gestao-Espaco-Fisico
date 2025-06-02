@@ -33,13 +33,14 @@ public class SolicitacaoController {
 	}
 
 	@PostMapping
-	public SolicitacaoDTO criar(@RequestBody SolicitacaoDTO dto) {
-		System.out.println(dto.getDataReserva());
-		return solicitacaoMapper.toDTO(
-				solicitacaoService.salvar(
-						solicitacaoMapper.toEntity(dto)
-				)
-		);
+	public ResponseEntity<?> criar(@RequestBody SolicitacaoDTO dto) {
+		try {
+			Solicitacao entidade = solicitacaoMapper.toEntity(dto);
+			Solicitacao salva = solicitacaoService.salvar(entidade);
+			return ResponseEntity.ok(solicitacaoMapper.toDTO(salva));
+		} catch (RuntimeException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
 	}
 
 	@GetMapping("/pendentes")

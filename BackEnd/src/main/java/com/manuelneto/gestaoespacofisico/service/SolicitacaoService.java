@@ -18,9 +18,21 @@ public class SolicitacaoService {
 	public List<Solicitacao> listarTodas() {
 		return solicitacaoRepository.findAll();
 	}
-	
-	public Solicitacao salvar (Solicitacao solicitacao) {
-		System.out.println("DataReserva antes de salvar: " + solicitacao.getDataReserva());
+
+	public Solicitacao salvar(Solicitacao solicitacao) {
+		List<Solicitacao> conflitos = solicitacaoRepository.findConflitosDeHorario(
+				solicitacao.getEspacoFisico().getId(),
+				solicitacao.getDataReserva(),
+				solicitacao.getHoraInicio(),
+				solicitacao.getHoraFim()
+		);
+
+		boolean temConflito = conflitos.stream().anyMatch(s -> !s.getId().equals(solicitacao.getId()));
+
+		if (temConflito) {
+			throw new RuntimeException("Já existe uma solicitação para esse espaço com horário conflitante.");
+		}
+
 		return solicitacaoRepository.save(solicitacao);
 	}
 
