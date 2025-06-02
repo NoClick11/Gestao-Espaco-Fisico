@@ -18,9 +18,8 @@ async function carregarEspacos() {
 
 async function criarEspaco() {
     const nome = document.getElementById('nome').value;
-    const tipo = document.getElementById('tipo').value;
     const metragem = parseFloat(document.getElementById('metragem').value);
-    await fetchAPI('/espacos', 'POST', { nome, tipo, metragem });
+    await fetchAPI('/espacos', 'POST', { nome, metragem });
     carregarEspacos();
 }
 

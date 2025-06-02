@@ -1,21 +1,5 @@
 const API_URL = 'http://localhost:8080/api/solicitacoes/pendentes';
 
-const arr =[
-    {
-        "id": 8,
-        "espacoFisicoId": 2,
-        "solicitanteId": 4,
-        "dataReserva": "2023-06-20",
-        "horaInicio": "14:00:00",
-        "horaFim": "17:00:00",
-        "status": "PENDENTE",
-        "equipamentosIds": [
-            1,
-            4
-        ]
-    }
-]
-
 async function carregarSolicitacoes() {
     try {
         const resposta = await fetch(API_URL);
@@ -32,8 +16,8 @@ async function carregarSolicitacoes() {
 
             linha.innerHTML = `
                 <td>${solicitacao.id}</td>
-                <td>${solicitacao.solicitanteId}</td>
-                <td>${solicitacao.espacoFisicoId}</td>
+                <td>${solicitacao.solicitanteNome}</td>
+                <td>${solicitacao.espacoFisicoNome}</td>
                 <td>${solicitacao.dataReserva}</td>
                 <td>${solicitacao.horaInicio}</td>
                 <td>${solicitacao.horaFim}</td>
@@ -56,7 +40,7 @@ async function atualizarStatus(id, novoStatus) {
         const resposta = await fetch(`http://localhost:8080/api/solicitacoes/${id}/status`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status: novoStatus }) // Enviando como objeto JSON
+            body: JSON.stringify({ status: novoStatus })
         });
 
         if (!resposta.ok) {
