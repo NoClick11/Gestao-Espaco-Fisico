@@ -190,10 +190,10 @@ gestao-espaco-fisico/
 |--------|----------|-----------|--------|
 | `GET` | `/` | Lista todas solicitações | ✅ |
 | `POST` | `/` | Cria nova solicitação | ✅ |
-| `GET` | `/usuario/${usuarioId}` | Lista solicitacoes deum id | ✅ |
 | `GET` | `/pendentes` | Lista solicitações pendentes | ✅ |
 | `GET` | `/pendentes/count` | Conta solicitações pendentes | ✅ |
 | `GET` | `/{id}` | Busca solicitação por ID | ✅ |
+| `GET` | `/usuario/${usuarioId}` | Lista solicitacoes por id | ✅ |
 | `PUT` | `/{id}` | Atualiza solicitação | ✅ |
 | `PUT` | `/{id}/status` | Atualiza status da solicitação | ✅ |
 | `DELETE` | `/{id}` | Remove solicitação | ✅ |
