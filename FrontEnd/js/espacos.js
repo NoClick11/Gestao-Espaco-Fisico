@@ -7,7 +7,6 @@ async function carregarEspacos() {
         tr.innerHTML = `
             <td>${e.id}</td>
             <td>${e.nome}</td>
-            <td>${e.tipo}</td>
             <td>${e.metragem}</td>
             <td>
                 <button onclick="deletarEspaco(${e.id})">Deletar</button>

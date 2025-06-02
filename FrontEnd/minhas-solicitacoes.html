@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <header><h1>Gestão de Espaços Físicos</h1></header>
-    <a href="index.html">Início</a>
-      <a href="dashboard.html" class="gestor-only hidden">Dashboard</a>
-      <a href="espacos.html" class="gestor-only hidden">Espaços</a>
-      <a href="equipamentos.html" class="gestor-only hidden">Equipamentos</a>
-      <a href="solicitacoes.html" class="gestor-only hidden">Solicitações</a>
-      <a href="usuarios.html" class="gestor-only hidden">Usuários</a>
-      <a href="nova-solicitacao.html" class="user-access hidden">Nova Solicitação</a>
-      <a href="minhas-solicitacoes.html" class="user-access hidden">Minhas Solicitações</a>
-      <a href="avaliar-solicitacoes.html" class="gestor-only hidden">Avaliar Solicitações</a>
-      <script src="js/selecionarperfil.js"></script>
-      <script>
-    window.addEventListener('load', function() {
-        // Para Nova Solicitação, qualquer perfil pode acessar
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+     <header>
+        <h1>Consultar Solicitações por Usuário</h1>
+    </header>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="nova-solicitacao.html">Nova Solicitação</a>
+        <a href="minhas-solicitacoes.html">Consultar por Usuário</a>
+    </nav>
+
+    <div class="container">
+        <div class="user-selector">
+            <h2>Selecione um Usuário</h2>
+            <select id="usuarios-select">
+                <option value="">Carregando usuários...</option>
+            </select>
+            <button id="buscar-btn">Buscar Solicitações</button>
+        </div>
+
+        <div id="solicitacoes-container">
+            <p>Selecione um usuário e clique em "Buscar Solicitações"</p>
+        </div>
+    </div>
+    <script src="js/buscarSolicitacoes.js"></script>
+    <script src="js/selecionarperfil.js"></script>
+    <script>
+      window.addEventListener("load", function () {
         aplicarControlePerfil();
         mostrarIndicadorPerfil();
-    });
-</script>
-</body>
+      });
+    </script>
+  </body>
 </html>

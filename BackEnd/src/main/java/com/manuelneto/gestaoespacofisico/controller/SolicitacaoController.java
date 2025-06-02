@@ -60,6 +60,17 @@ public class SolicitacaoController {
 				.orElse(ResponseEntity.notFound().build());
 	}
 
+	@GetMapping("/usuario/{usuarioId}")
+	public ResponseEntity<List<SolicitacaoDTO>> buscarPorUsuario(@PathVariable Long usuarioId) {
+		List<Solicitacao> solicitacoes = solicitacaoService.buscarPorUsuarioId(usuarioId);
+		List<SolicitacaoDTO> dtos = solicitacoes.stream()
+				.map(solicitacaoMapper::toDTO)
+				.toList();
+
+		return ResponseEntity.ok(dtos);
+	}
+
+
 	@PutMapping("/{id}")
 	public ResponseEntity<SolicitacaoDTO> atualizar(@PathVariable Long id, @RequestBody SolicitacaoDTO dto) {
 		dto.setId(id);

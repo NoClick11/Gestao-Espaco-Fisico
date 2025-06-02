@@ -26,8 +26,8 @@ function carregarSolicitacoes() {
                     const linha = document.createElement('tr');
                     linha.innerHTML = `
                         <td>${solicitacao.id}</td>
-                        <td>${solicitacao.espacoFisicoId }</td>
-                        <td>${solicitacao.solicitanteId }</td>
+                        <td>${solicitacao.espacoFisicoNome }</td>
+                        <td>${solicitacao.solicitanteNome }</td>
                         <td>${solicitacao.equipamentosNomes}</td>
                         <td>${solicitacao.dataReserva || 'Sem data'}</td>
                         <td>${solicitacao.status || ''}</td>

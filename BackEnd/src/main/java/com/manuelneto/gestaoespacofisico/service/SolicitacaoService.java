@@ -27,6 +27,10 @@ public class SolicitacaoService {
 	public Optional<Solicitacao> buscarPorID(Long id) {
 		return solicitacaoRepository.findById(id);
 	}
+
+	public List<Solicitacao> buscarPorUsuarioId(Long usuarioId) {
+		return solicitacaoRepository.findBySolicitanteId(usuarioId);
+	}
 	
 	public List<Solicitacao> buscarPorStatus(String status) {
 		return solicitacaoRepository.findByStatus(status);

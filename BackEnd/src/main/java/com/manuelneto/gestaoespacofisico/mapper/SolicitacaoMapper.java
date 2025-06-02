@@ -31,21 +31,28 @@ public class SolicitacaoMapper {
 
         SolicitacaoDTO dto = new SolicitacaoDTO();
         dto.setId(solicitacao.getId());
+
+        // Espaço Físico
         dto.setEspacoFisicoId(solicitacao.getEspacoFisico() != null ? solicitacao.getEspacoFisico().getId() : null);
+        dto.setEspacoFisicoNome(solicitacao.getEspacoFisico() != null ? solicitacao.getEspacoFisico().getNome() : null);
+
+        // Solicitante
         dto.setSolicitanteId(solicitacao.getSolicitante() != null ? solicitacao.getSolicitante().getId() : null);
+        dto.setSolicitanteNome(solicitacao.getSolicitante() != null ? solicitacao.getSolicitante().getNome() : null);
+
+        // Datas e horários
         dto.setDataReserva(solicitacao.getDataReserva());
         dto.setHoraInicio(solicitacao.getHoraInicio());
         dto.setHoraFim(solicitacao.getHoraFim());
         dto.setStatus(solicitacao.getStatus());
 
+        // Equipamentos
         if (solicitacao.getEquipamentos() != null) {
-            // IDs dos equipamentos
             Set<Long> equipamentosIds = solicitacao.getEquipamentos().stream()
                     .map(Equipamento::getId)
                     .collect(Collectors.toSet());
             dto.setEquipamentosIds(equipamentosIds);
 
-            // Apenas os nomes dos equipamentos
             List<String> equipamentosNomes = solicitacao.getEquipamentos().stream()
                     .map(Equipamento::getNome)
                     .collect(Collectors.toList());

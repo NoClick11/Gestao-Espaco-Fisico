@@ -8,7 +8,9 @@ import java.util.Set;
 public class SolicitacaoDTO {
     private Long id;
     private Long espacoFisicoId;
+    private String espacoFisicoNome;
     private Long solicitanteId;
+    private String solicitanteNome;
     private LocalDate dataReserva;
     private LocalDate dataSolicitacao;
     private LocalTime horaInicio;
@@ -17,7 +19,22 @@ public class SolicitacaoDTO {
     private Set<Long> equipamentosIds;
     private List<String> equipamentosNomes; // Alterado para List<String>
 
-    // Getters e Setters
+    public String getEspacoFisicoNome() {
+        return espacoFisicoNome;
+    }
+
+    public void setEspacoFisicoNome(String espacoFisicoNome) {
+        this.espacoFisicoNome = espacoFisicoNome;
+    }
+
+    public String getSolicitanteNome() {
+        return solicitanteNome;
+    }
+
+    public void setSolicitanteNome(String solicitanteNome) {
+        this.solicitanteNome = solicitanteNome;
+    }
+
     public Long getId() {
         return id;
     }
