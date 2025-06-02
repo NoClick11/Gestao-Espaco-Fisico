@@ -8,9 +8,10 @@ import com.manuelneto.gestaoespacofisico.service.EspacoFisicoService;
 import com.manuelneto.gestaoespacofisico.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import java.util.Set;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
@@ -38,10 +39,17 @@ public class SolicitacaoMapper {
         dto.setStatus(solicitacao.getStatus());
 
         if (solicitacao.getEquipamentos() != null) {
+            // IDs dos equipamentos
             Set<Long> equipamentosIds = solicitacao.getEquipamentos().stream()
                     .map(Equipamento::getId)
                     .collect(Collectors.toSet());
             dto.setEquipamentosIds(equipamentosIds);
+
+            // Apenas os nomes dos equipamentos
+            List<String> equipamentosNomes = solicitacao.getEquipamentos().stream()
+                    .map(Equipamento::getNome)
+                    .collect(Collectors.toList());
+            dto.setEquipamentosNomes(equipamentosNomes);
         }
 
         return dto;
@@ -49,7 +57,6 @@ public class SolicitacaoMapper {
 
     public Solicitacao toEntity(SolicitacaoDTO dto) {
         if (dto == null) return null;
-        System.out.println("DataReserva recebida no DTO: " + dto.getDataReserva());
 
         Solicitacao solicitacao = new Solicitacao();
         solicitacao.setId(dto.getId());

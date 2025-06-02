@@ -28,7 +28,7 @@ function carregarSolicitacoes() {
                         <td>${solicitacao.id}</td>
                         <td>${solicitacao.espacoFisicoId }</td>
                         <td>${solicitacao.solicitanteId }</td>
-                        <td>${solicitacao.equipamentosIds}</td>
+                        <td>${solicitacao.equipamentosNomes}</td>
                         <td>${solicitacao.dataReserva || 'Sem data'}</td>
                         <td>${solicitacao.status || ''}</td>
                         <td>${solicitacao.horaInicio || 'Sem data'}</td>

@@ -1,28 +1,21 @@
 package com.manuelneto.gestaoespacofisico.dto;
 
-import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Set;
 
 public class SolicitacaoDTO {
     private Long id;
-
     private Long espacoFisicoId;
-
     private Long solicitanteId;
-
     private LocalDate dataReserva;
-
     private LocalDate dataSolicitacao;
-
     private LocalTime horaInicio;
-
     private LocalTime horaFim;
-
     private String status;
-
     private Set<Long> equipamentosIds;
+    private List<String> equipamentosNomes; // Alterado para List<String>
 
     // Getters e Setters
     public Long getId() {
@@ -57,6 +50,14 @@ public class SolicitacaoDTO {
         this.dataReserva = dataReserva;
     }
 
+    public LocalDate getDataSolicitacao() {
+        return dataSolicitacao;
+    }
+
+    public void setDataSolicitacao(LocalDate dataSolicitacao) {
+        this.dataSolicitacao = dataSolicitacao;
+    }
+
     public LocalTime getHoraInicio() {
         return horaInicio;
     }
@@ -89,11 +90,11 @@ public class SolicitacaoDTO {
         this.equipamentosIds = equipamentosIds;
     }
 
-    public LocalDate getDataSolicitacao() {
-        return dataSolicitacao;
+    public List<String> getEquipamentosNomes() {
+        return equipamentosNomes;
     }
 
-    public void setDataSolicitacao(LocalDate dataSolicitacao) {
-        this.dataSolicitacao = dataSolicitacao;
+    public void setEquipamentosNomes(List<String> equipamentosNomes) {
+        this.equipamentosNomes = equipamentosNomes;
     }
 }
