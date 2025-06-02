@@ -1,6 +1,6 @@
 const API_URL = "http://localhost:8080/api";
 
-// Elementos do formulário
+
 const form = document.getElementById("solicitacao-form");
 const espacoSelect = document.getElementById("espaco");
 const solicitanteSelect = document.getElementById("solicitante");
@@ -8,7 +8,6 @@ const equipamentosContainer = document.getElementById("equipamentos-lista");
 const filtroEquipamentos = document.getElementById("filtro-equipamentos");
 const contadorEquipamentos = document.getElementById("contador-equipamentos");
 
-// Carrega todas as opções do formulário
 async function carregarOpcoes() {
     try {
         console.log("Carregando dados...");
@@ -29,7 +28,6 @@ async function carregarOpcoes() {
     }
 }
 
-// Preenche selects
 function popularSelect(selectElement, itens) {
     selectElement.innerHTML = '<option value="">Selecione...</option>';
 
@@ -41,16 +39,12 @@ function popularSelect(selectElement, itens) {
     });
 }
 
-// Preenche equipamentos com checkboxes
 console.log("Populando equipamentos...");
 function popularEquipamentos(equipamentos) {
-    // Limpa o container completamente
     equipamentosContainer.innerHTML = '';
 
-    // Ordena equipamentos por nome
     equipamentos.sort((a, b) => a.nome.localeCompare(b.nome));
 
-    // Adiciona cada equipamento
     equipamentos.forEach(eq => {
         const div = document.createElement('div');
         div.className = 'checkbox-item';
@@ -72,7 +66,6 @@ function popularEquipamentos(equipamentos) {
     atualizarContador();
 }
 
-// Filtrar equipamentos
 filtroEquipamentos.addEventListener('input', function() {
     const termo = this.value.toLowerCase();
     document.querySelectorAll('.checkbox-item').forEach(item => {
@@ -81,20 +74,17 @@ filtroEquipamentos.addEventListener('input', function() {
     });
 });
 
-// Contador de selecionados
 function atualizarContador() {
     const selecionados = document.querySelectorAll('#equipamentos-lista input:checked').length;
     contadorEquipamentos.textContent = `${selecionados} selecionado(s)`;
 }
 
-// Monitoramento de alteração dos checkboxes
 equipamentosContainer.addEventListener('change', function(event) {
     if (event.target.type === 'checkbox') {
         atualizarContador();
     }
 });
 
-// Envio do formulário
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -136,7 +126,6 @@ form.addEventListener("submit", async (e) => {
     }
 });
 
-// Inicialização
 document.addEventListener('DOMContentLoaded', () => {
     carregarOpcoes();
 });

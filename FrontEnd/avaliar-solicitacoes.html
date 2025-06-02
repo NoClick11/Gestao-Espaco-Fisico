@@ -3,18 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <title>Avaliar Solicitações</title>
-    <link rel="stylesheet" href="/FrontEnd/css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
     <header><h1>Avaliar Solicitações Pendentes</h1></header>
     <nav>
-      <a href="index.html">Inicio</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="espacos.html">Espaços</a>
-      <a href="equipamentos.html">Equipamentos</a>
-      <a href="solicitacoes.html">Solicitações</a>
-      <a href="usuarios.html">Usuários</a>
-      <a href="nova-solicitacao.html">Nova Solicitação</a>
+      <a href="index.html">Início</a>
+      <a href="dashboard.html" class="gestor-only hidden">Dashboard</a>
+      <a href="espacos.html" class="gestor-only hidden">Espaços</a>
+      <a href="equipamentos.html" class="gestor-only hidden">Equipamentos</a>
+      <a href="solicitacoes.html" class="gestor-only hidden">Solicitações</a>
+      <a href="usuarios.html" class="gestor-only hidden">Usuários</a>
+      <a href="nova-solicitacao.html" class="user-access hidden"
+        >Nova Solicitação</a
+      >
+      <a href="minhas-solicitacoes.html" class="user-access hidden"
+        >Minhas Solicitações</a
+      >
+      <a href="avaliar-solicitacoes.html" class="gestor-only hidden"
+        >Avaliar Solicitações</a
+      >
     </nav>
 
     <table border="1">
@@ -32,7 +40,14 @@
       </thead>
       <tbody id="solicitacao-table"></tbody>
     </table>
-
-    <script src="/FrontEnd/js/avaliar-solicitacoes.js"></script>
+    <script src="js/avaliar-solicitacoes.js"></script>
+    <script src="js/selecionarperfil.js"></script>
+    <script>
+      window.addEventListener("load", function () {
+        paginaApenasGestor();
+        aplicarControlePerfil();
+        mostrarIndicadorPerfil();
+      });
+    </script>
   </body>
 </html>

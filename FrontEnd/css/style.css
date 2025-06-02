@@ -107,7 +107,6 @@ form {
   border: 1px solid #f5c6cb;
 }
 
-/* Estilos para filtros */
 .filtros {
   display: flex;
   align-items: center;
@@ -124,7 +123,6 @@ form {
   margin: 0;
 }
 
-/* Responsividade para tabela */
 @media (max-width: 768px) {
   table {
     font-size: 12px;
@@ -141,7 +139,6 @@ form {
   }
 }
 
-/* Estilos para modal */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -182,7 +179,6 @@ form {
   margin-left: 10px;
 }
 
-/* Botão de cancelar */
 .btn-cancel {
   background-color: #6c757d !important;
 }
@@ -191,13 +187,11 @@ form {
   background-color: #545b62 !important;
 }
 
-/* Container principal */
 .equipamentos-container {
     margin: 15px 0;
     width: 100%;
 }
 
-/* Cabeçalho */
 .equipamentos-header {
     display: flex;
     justify-content: space-between;
@@ -205,7 +199,6 @@ form {
     margin-bottom: 8px;
 }
 
-/* Grupo de checkboxes */
 .checkbox-group {
     display: flex;
     flex-direction: column;
@@ -218,7 +211,6 @@ form {
     background: #f9f9f9;
 }
 
-/* Item individual */
 .checkbox-item {
     display: flex;
     align-items: center;
@@ -231,7 +223,6 @@ form {
     background: #f0f0f0;
 }
 
-/* Checkbox */
 .checkbox-item input[type="checkbox"] {
     margin: 0 10px 0 0;
     width: 16px;
@@ -239,7 +230,6 @@ form {
     cursor: pointer;
 }
 
-/* Label */
 .checkbox-item label {
     flex: 1;
     margin: 0;
@@ -252,7 +242,6 @@ form {
     text-overflow: ellipsis;
 }
 
-/* Filtro */
 #filtro-equipamentos {
     width: 100%;
     padding: 8px 12px;
@@ -262,8 +251,89 @@ form {
     font-size: 14px;
 }
 
-/* Contador */
 #contador-equipamentos {
     font-size: 13px;
     color: #666;
+}
+
+.perfil-selector {
+  text-align: center;
+  margin: 30px 0;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-selector h3 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.perfil-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-perfil {
+  background-color: #0077cc;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  min-width: 150px;
+}
+
+.btn-perfil:hover {
+  background-color: #005fa3;
+}
+
+.perfil-info {
+  text-align: center;
+  margin: 20px 0;
+  padding: 15px;
+  background: #e7f3ff;
+  border-radius: 8px;
+  border-left: 4px solid #0077cc;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  table {
+    font-size: 12px;
+  }
+
+  th,
+  td {
+    padding: 6px;
+  }
+
+  button {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  .perfil-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-perfil {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .modal-content {
+    min-width: 300px;
+    margin: 20px;
+  }
 }

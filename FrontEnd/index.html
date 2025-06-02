@@ -7,19 +7,46 @@
   </head>
   <body>
     <header><h1>Gestão de Espaços Físicos</h1></header>
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="espacos.html">Espaços</a>
-      <a href="equipamentos.html">Equipamentos</a>
-      <a href="solicitacoes.html">Solicitações</a>
-      <a href="usuarios.html">Usuários</a>
-      <a href="nova-solicitacao.html">Nova Solicitação</a>
-      <a href="avaliar-solicitacoes.html">Avaliar-solicitacoes</a>
+
+    <nav id="navigation">
+      <a href="index.html">Início</a>
+      <a href="dashboard.html" class="gestor-only hidden">Dashboard</a>
+      <a href="espacos.html" class="gestor-only hidden">Espaços</a>
+      <a href="equipamentos.html" class="gestor-only hidden">Equipamentos</a>
+      <a href="solicitacoes.html" class="gestor-only hidden">Solicitações</a>
+      <a href="usuarios.html" class="gestor-only hidden">Usuários</a>
+      <a href="nova-solicitacao.html" class="user-access hidden">Nova Solicitação</a>
+      <a href="minhas-solicitacoes.html" class="user-access hidden">Minhas Solicitações</a>
+      <a href="avaliar-solicitacoes.html" class="gestor-only hidden">Avaliar Solicitações</a>
     </nav>
+
     <div class="container">
       <h2>Bem-vindo!</h2>
-      <p>Utilize o menu acima para navegar.</p>
+
+      <div id="perfil-selector" class="perfil-selector">
+        <h3>Para continuar, informe seu perfil de acesso:</h3>
+        <div class="perfil-buttons">
+          <button class="btn-perfil" onclick="selecionarPerfil('gestor')">
+            Sou Gestor
+          </button>
+          <button class="btn-perfil" onclick="selecionarPerfil('usuario')">
+            Sou Usuário
+          </button>
+        </div>
+      </div>
+
+      <div id="perfil-info" class="perfil-info hidden">
+        <p id="perfil-texto"></p>
+        <button onclick="alterarPerfil()" style="margin-top: 10px">
+          Alterar Perfil
+        </button>
+      </div>
+
+      <div id="conteudo-principal" class="hidden">
+        <p>Utilize o menu acima para navegar pelo sistema.</p>
+      </div>
     </div>
+    <script src="js/script.js"></script>
+    <script src="js/selecionarperfil.js"></script>
   </body>
 </html>
