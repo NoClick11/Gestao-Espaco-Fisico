@@ -7,4 +7,5 @@ import com.manuelneto.gestaoespacofisico.entity.EspacoFisico;
 
 @Repository
 public interface EspacoFisicoRepository extends JpaRepository<EspacoFisico, Long> {
+    EspacoFisico findByNome(String nome);
 }

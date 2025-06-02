@@ -43,7 +43,11 @@ public class SolicitacaoService {
 	public List<Solicitacao> buscarPorUsuarioId(Long usuarioId) {
 		return solicitacaoRepository.findBySolicitanteId(usuarioId);
 	}
-	
+
+	public List<Solicitacao> buscarPorEspacoId(Long espacoId) {
+		return solicitacaoRepository.findByEspacoFisicoId(espacoId);
+	}
+
 	public List<Solicitacao> buscarPorStatus(String status) {
 		return solicitacaoRepository.findByStatus(status);
 	}

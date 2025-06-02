@@ -27,6 +27,10 @@ public class EspacoFisicoService {
     public EspacoFisico buscarPorId(Long id) {
         return espacoRepository.findById(id).orElse(null);
     }
+
+    public EspacoFisico buscarPorNome(String nome) {
+        return espacoRepository.findByNome(nome);
+    }
     
     public void deletar(Long id) {
         espacoRepository.deleteById(id);

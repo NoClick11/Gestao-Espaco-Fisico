@@ -1,10 +1,12 @@
 package com.manuelneto.gestaoespacofisico.controller;
 
 import com.manuelneto.gestaoespacofisico.dto.AtualizarStatusDTO;
+import com.manuelneto.gestaoespacofisico.dto.HistoricoEspacoDTO;
 import com.manuelneto.gestaoespacofisico.dto.SolicitacaoDTO;
-import com.manuelneto.gestaoespacofisico.dto.StatusDTO;
+import com.manuelneto.gestaoespacofisico.entity.EspacoFisico;
 import com.manuelneto.gestaoespacofisico.entity.Solicitacao;
 import com.manuelneto.gestaoespacofisico.mapper.SolicitacaoMapper;
+import com.manuelneto.gestaoespacofisico.service.EspacoFisicoService;
 import com.manuelneto.gestaoespacofisico.service.SolicitacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,12 +26,36 @@ public class SolicitacaoController {
 	@Autowired
 	private SolicitacaoMapper solicitacaoMapper;
 
+	@Autowired
+	private EspacoFisicoService espacoFisicoService;
+
 	@GetMapping
 	public List<SolicitacaoDTO> listarTodas() {
 		return solicitacaoService.listarTodas()
 				.stream()
 				.map(solicitacaoMapper::toDTO)
 				.collect(Collectors.toList());
+	}
+
+	@GetMapping("/historico-por-espaco/{espacoNome}")
+	public ResponseEntity<HistoricoEspacoDTO> getHistoricoPorEspacoNome(
+			@PathVariable String espacoNome) {
+
+		EspacoFisico espaco = espacoFisicoService.buscarPorNome(espacoNome);
+		if (espaco == null) {
+			return ResponseEntity.notFound().build();
+		}
+
+		List<Solicitacao> solicitacoes = solicitacaoService.buscarPorEspacoId(espaco.getId());
+		HistoricoEspacoDTO historico = new HistoricoEspacoDTO();
+		historico.setEspacoId(espaco.getId());
+		historico.setEspacoNome(espaco.getNome());
+
+		historico.setSolicitacoes(solicitacoes.stream()
+				.map(solicitacaoMapper::toDTO)
+				.collect(Collectors.toList()));
+
+		return ResponseEntity.ok(historico);
 	}
 
 	@PostMapping

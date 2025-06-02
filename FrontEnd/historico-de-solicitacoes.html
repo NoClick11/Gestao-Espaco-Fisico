@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Solicitações - Gestão de Espaços Físicos</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Gestão de Espaços Físicos</h1>
+    </header>
+
+    <nav id="navigation">
+        <a href="index.html">Início</a>
+        <a href="dashboard.html" class="gestor-only hidden">Dashboard</a>
+        <a href="espacos.html" class="gestor-only hidden">Espaços</a>
+        <a href="equipamentos.html" class="gestor-only hidden">Equipamentos</a>
+        <a href="solicitacoes.html" class="gestor-only hidden">Solicitações</a>
+        <a href="usuarios.html" class="gestor-only hidden">Usuários</a>
+        <a href="nova-solicitacao.html" class="user-access hidden">Nova Solicitação</a>
+        <a href="minhas-solicitacoes.html" class="user-access hidden">Minhas Solicitações</a>
+        <a href="avaliar-solicitacoes.html" class="gestor-only hidden">Avaliar Solicitações</a>
+        <a href="historico-de-solicitacoes.html" class="gestor-only hidden">Histórico De Solicitações</a>
+    </nav>
+
+    <div class="page-container">
+        <div class="page-header">
+            <h1>Histórico de Solicitações</h1>
+            <p>Visualize o histórico completo de solicitações por espaço físico</p>
+        </div>
+
+        <div class="filters-section">
+            <div class="filters-row">
+                <div class="filter-group">
+                    <label for="espacoSelect">Espaço Físico:</label>
+                    <select id="espacoSelect" required>
+                        <option value="">Carregando espaços...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="export-section">
+            <button type="button" onclick="exportarCSV()" class="btn btn-success">
+                Exportar CSV
+            </button>
+        </div>
+
+        <div id="loading" class="loading hidden">
+            <p>Carregando...</p>
+        </div>
+
+        <div id="errorMessage" class="error-message hidden"></div>
+
+        <div id="historicoContainer" class="historico-container">
+        </div>
+    </div>
+     </script><script src="js/selecionarperfil.js"></script>
+     <script src="js/historico-de-solicitacoes.js"></script>
+</body>
+</html>

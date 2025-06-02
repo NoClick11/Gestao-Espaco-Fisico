@@ -15,6 +15,7 @@ import com.manuelneto.gestaoespacofisico.entity.Solicitacao;
 public interface SolicitacaoRepository extends JpaRepository<Solicitacao, Long>{
 	List<Solicitacao> findByStatus(String status);
 	List<Solicitacao> findBySolicitanteId(Long usuarioId);
+	List<Solicitacao> findByEspacoFisicoId(Long espacoId);
 
 	@Query("SELECT s FROM Solicitacao s WHERE " +
 			"s.espacoFisico.id = :espacoId AND " +
