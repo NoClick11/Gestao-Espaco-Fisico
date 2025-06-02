@@ -194,6 +194,7 @@ gestao-espaco-fisico/
 | `GET` | `/pendentes/count` | Conta solicitações pendentes | ✅ |
 | `GET` | `/{id}` | Busca solicitação por ID | ✅ |
 | `GET` | `/usuario/${usuarioId}` | Lista solicitacoes por id | ✅ |
+| `GET` | `/historico-por-espaco/{espacoNome}` | Lista espaços por nome | ✅ |
 | `PUT` | `/{id}` | Atualiza solicitação | ✅ |
 | `PUT` | `/{id}/status` | Atualiza status da solicitação | ✅ |
 | `DELETE` | `/{id}` | Remove solicitação | ✅ |
