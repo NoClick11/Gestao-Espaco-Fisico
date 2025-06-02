@@ -1,6 +1,9 @@
 package com.manuelneto.gestaoespacofisico.controller;
 
+import com.manuelneto.gestaoespacofisico.dto.AtualizarStatusDTO;
 import com.manuelneto.gestaoespacofisico.dto.SolicitacaoDTO;
+import com.manuelneto.gestaoespacofisico.dto.StatusDTO;
+import com.manuelneto.gestaoespacofisico.entity.Solicitacao;
 import com.manuelneto.gestaoespacofisico.mapper.SolicitacaoMapper;
 import com.manuelneto.gestaoespacofisico.service.SolicitacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +34,22 @@ public class SolicitacaoController {
 
 	@PostMapping
 	public SolicitacaoDTO criar(@RequestBody SolicitacaoDTO dto) {
+		System.out.println(dto.getDataReserva());
 		return solicitacaoMapper.toDTO(
 				solicitacaoService.salvar(
 						solicitacaoMapper.toEntity(dto)
 				)
 		);
+	}
+
+	@GetMapping("/pendentes")
+	public ResponseEntity<List<SolicitacaoDTO>> listarPendentes() {
+		List<Solicitacao> pendentes = solicitacaoService.buscarPorStatus("PENDENTE");
+		List<SolicitacaoDTO> pendentesDTO = pendentes.stream()
+				.map(solicitacaoMapper::toDTO)
+				.toList();
+
+		return ResponseEntity.ok(pendentesDTO);
 	}
 
 	@GetMapping("/{id}")
@@ -59,11 +73,14 @@ public class SolicitacaoController {
 	}
 
 	@PutMapping("/{id}/status")
-	public ResponseEntity<SolicitacaoDTO> atualizarStatus(@PathVariable Long id, @RequestBody String status) {
+	public ResponseEntity<SolicitacaoDTO> atualizarStatus(
+			@PathVariable Long id,
+			@RequestBody AtualizarStatusDTO dto) {
+
 		return ResponseEntity.of(
 				solicitacaoService.buscarPorID(id)
 						.map(solicitacao -> {
-							solicitacao.setStatus(status);
+							solicitacao.setStatus(dto.getStatus());
 							return solicitacaoMapper.toDTO(solicitacaoService.salvar(solicitacao));
 						})
 		);

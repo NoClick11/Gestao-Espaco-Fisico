@@ -49,6 +49,7 @@ public class SolicitacaoMapper {
 
     public Solicitacao toEntity(SolicitacaoDTO dto) {
         if (dto == null) return null;
+        System.out.println("DataReserva recebida no DTO: " + dto.getDataReserva());
 
         Solicitacao solicitacao = new Solicitacao();
         solicitacao.setId(dto.getId());

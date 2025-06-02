@@ -15,27 +15,37 @@ public class Solicitacao {
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_espaco", nullable = false)
+	@JoinColumn(name = "id_espaco")
 	private EspacoFisico espacoFisico;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_solicitante", nullable = false)
+	@JoinColumn(name = "id_solicitante")
 	private Usuario solicitante;
+
+	@Column(name = "data_solicitacao", nullable = false, updatable = false)
+	private LocalDate dataSolicitacao = LocalDate.now();
 
 	@Column(name = "data_reserva", nullable = false)
 	private LocalDate dataReserva;
 
-	@Column(name = "hora_inicio", nullable = false)
+	@PrePersist
+	public void prePersist() {
+		if (dataSolicitacao == null) {
+			dataSolicitacao = LocalDate.now();
+		}
+		if (dataReserva == null) {
+			dataReserva = LocalDate.now();
+		}
+	}
+
+	@Column(name = "hora_inicio")
 	private LocalTime horaInicio;
 
-	@Column(name = "hora_fim", nullable = false)
+	@Column(name = "hora_fim")
 	private LocalTime horaFim;
 
 	@Column(nullable = false)
 	private String status;
-
-	@Column(columnDefinition = "TEXT")
-	private String descricao;
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
@@ -110,27 +120,11 @@ public class Solicitacao {
 		this.status = status;
 	}
 
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
 	public Set<Equipamento> getEquipamentos() {
 		return equipamentos;
 	}
 
 	public void setEquipamentos(Set<Equipamento> equipamentos) {
 		this.equipamentos = equipamentos;
-	}
-
-	public LocalDate getDataCriacao() {
-		return dataCriacao;
-	}
-
-	public void setDataCriacao(LocalDate dataCriacao) {
-		this.dataCriacao = dataCriacao;
 	}
 }

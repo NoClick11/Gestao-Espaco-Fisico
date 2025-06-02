@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Espaços Físicos</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
     <script src="js/api.js"></script>
     <script src="js/espacos.js" defer></script>
-</head>
-<body>
-<header><h1>Espaços Físicos</h1></header>
-<nav>
-    <a href="index.html">Início</a>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="equipamentos.html">Equipamentos</a>
-    <a href="solicitacoes.html">Solicitações</a>
-    <a href="usuarios.html">Usuários</a>
-    <a href="nova-solicitacao.html">Nova Solicitação</a>
-</nav>
-<div class="container">
-    <h2>Lista de Espaços</h2>
-    <table id="espacos-table">
+  </head>
+  <body>
+    <header><h1>Espaços Físicos</h1></header>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="equipamentos.html">Equipamentos</a>
+      <a href="solicitacoes.html">Solicitações</a>
+      <a href="usuarios.html">Usuários</a>
+      <a href="nova-solicitacao.html">Nova Solicitação</a>
+      <a href="avaliar-solicitacoes.html">Avaliar-solicitacoes</a>
+    </nav>
+    <div class="container">
+      <h2>Lista de Espaços</h2>
+      <table id="espacos-table">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Tipo</th>
-                <th>Metragem</th>
-                <th>Ações</th>
-            </tr>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>Metragem</th>
+            <th>Ações</th>
+          </tr>
         </thead>
         <tbody></tbody>
-    </table>
+      </table>
 
-    <h3>Adicionar Espaço</h3>
-    <input type="text" id="nome" placeholder="Nome">
-    <input type="text" id="tipo" placeholder="Tipo">
-    <input type="number" id="metragem" placeholder="Metragem">
-    <button onclick="criarEspaco()">Adicionar</button>
-</div>
-</body>
+      <h3>Adicionar Espaço</h3>
+      <input type="text" id="nome" placeholder="Nome" />
+      <input type="text" id="tipo" placeholder="Tipo" />
+      <input type="number" id="metragem" placeholder="Metragem" />
+      <button onclick="criarEspaco()">Adicionar</button>
+    </div>
+  </body>
 </html>

@@ -20,6 +20,7 @@ public class SolicitacaoService {
 	}
 	
 	public Solicitacao salvar (Solicitacao solicitacao) {
+		System.out.println("DataReserva antes de salvar: " + solicitacao.getDataReserva());
 		return solicitacaoRepository.save(solicitacao);
 	}
 

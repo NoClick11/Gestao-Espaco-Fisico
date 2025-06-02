@@ -1,30 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
     <script src="js/api.js"></script>
     <script src="js/dashboard.js" defer></script>
-</head>
-<body>
-<header><h1>Dashboard</h1></header>
-<nav>
-    <a href="index.html">Início</a>
-    <a href="espacos.html">Espaços</a>
-    <a href="equipamentos.html">Equipamentos</a>
-    <a href="solicitacoes.html">Solicitações</a>
-    <a href="usuarios.html">Usuários</a>
-    <a href="nova-solicitacao.html">Nova Solicitação</a>
-</nav>
-<div class="container">
-    <h2>Visão Geral</h2>
-    <ul>
+  </head>
+  <body>
+    <header><h1>Dashboard</h1></header>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="espacos.html">Espaços</a>
+      <a href="equipamentos.html">Equipamentos</a>
+      <a href="solicitacoes.html">Solicitações</a>
+      <a href="usuarios.html">Usuários</a>
+      <a href="nova-solicitacao.html">Nova Solicitação</a>
+      <a href="avaliar-solicitacoes.html">Avaliar-solicitacoes</a>
+    </nav>
+    <div class="container">
+      <h2>Visão Geral</h2>
+      <ul>
         <li><b>Espaços:</b> <span id="espacos-count"></span></li>
         <li><b>Equipamentos:</b> <span id="equipamentos-count"></span></li>
-        <li><b>Solicitações Pendentes:</b> <span id="solicitacoes-pendentes"></span></li>
+        <li>
+          <b>Solicitações Pendentes:</b>
+          <span id="solicitacoes-pendentes"></span>
+        </li>
         <li><b>Usuários:</b> <span id="usuarios-count"></span></li>
-    </ul>
-</div>
-</body>
+      </ul>
+    </div>
+  </body>
 </html>

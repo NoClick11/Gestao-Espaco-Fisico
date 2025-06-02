@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Avaliar Solicitações</title>
+    <link rel="stylesheet" href="/FrontEnd/css/style.css" />
+  </head>
+  <body>
+    <header><h1>Avaliar Solicitações Pendentes</h1></header>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="espacos.html">Espaços</a>
+      <a href="equipamentos.html">Equipamentos</a>
+      <a href="solicitacoes.html">Solicitações</a>
+      <a href="usuarios.html">Usuários</a>
+      <a href="nova-solicitacao.html">Nova Solicitação</a>
+    </nav>
+
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Solicitante</th>
+          <th>Espaço Físico</th>
+          <th>Data Reserva</th>
+          <th>Hora Início</th>
+          <th>Hora Fim</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="solicitacao-table"></tbody>
+    </table>
+
+    <script src="/FrontEnd/js/avaliar-solicitacoes.js"></script>
+  </body>
+</html>

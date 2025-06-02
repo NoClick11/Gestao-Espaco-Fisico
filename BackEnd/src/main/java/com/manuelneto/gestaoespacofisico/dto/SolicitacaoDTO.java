@@ -8,23 +8,20 @@ import java.util.Set;
 public class SolicitacaoDTO {
     private Long id;
 
-    @NotNull(message = "Espaço físico é obrigatório")
     private Long espacoFisicoId;
 
-    @NotNull(message = "Solicitante é obrigatório")
     private Long solicitanteId;
 
-    @NotNull(message = "Data da reserva é obrigatória")
     private LocalDate dataReserva;
 
-    @NotNull(message = "Hora de início é obrigatória")
+    private LocalDate dataSolicitacao;
+
     private LocalTime horaInicio;
 
-    @NotNull(message = "Hora de fim é obrigatória")
     private LocalTime horaFim;
 
     private String status;
-    private String equipamentos;
+
     private Set<Long> equipamentosIds;
 
     // Getters e Setters
@@ -90,5 +87,13 @@ public class SolicitacaoDTO {
 
     public void setEquipamentosIds(Set<Long> equipamentosIds) {
         this.equipamentosIds = equipamentosIds;
+    }
+
+    public LocalDate getDataSolicitacao() {
+        return dataSolicitacao;
+    }
+
+    public void setDataSolicitacao(LocalDate dataSolicitacao) {
+        this.dataSolicitacao = dataSolicitacao;
     }
 }
